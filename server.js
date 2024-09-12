@@ -23,6 +23,24 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+//READ
+app.get('/', async (request, response) => {
+   db.collection('exercises').find().toArray()
+   .then(data => {
+        response.render('index.ejs', { items: data})
+   })
+   .catch(error => console.error(error))
+})
+
+//CREATE
+// app.post
+
+//UPDATE
+// app.put
+
+
+//DELETE
+// app.delete
 
 app.listen(2121, () => {
     console.log('Running bro!')
