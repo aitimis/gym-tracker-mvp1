@@ -33,10 +33,34 @@ app.get('/', async (request, response) => {
 })
 
 //CREATE
-// app.post
+app.post('/addNewExercise', (request, response) => {
+    console.log(request.body)
+    db.collection('exercises').insertOne({
+        exerciseType: request.body.newExercise,
+        reps: request.body.repsAmount
+})
+    .then(result => {
+        console.log('New exercise added')
+        response.redirect('/')
+    })
+    .catch(error => console.error(error))
+})
 
 //UPDATE
-// app.put
+app.put('/addSet', (request, response) => {
+    db.collection('exercises').updateOne
+    ({exerciseType: request.body.itemfromJS},{
+        $inc: {
+            sets: 1
+        }
+    },{
+        sort: {_id: -1},
+        upsert: false
+    }).then(result => {
+        console.log('Set added')
+        response.json('Added set')
+    })
+})
 
 
 //DELETE

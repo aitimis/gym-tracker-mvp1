@@ -9,35 +9,42 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Exercises: </h1>
-    <ul class="exerciseItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <span><%= items[i].exerciseType %></span>
-            <span><%= items[i].sets %></span>
-            <span><%= items[i].reps %></span>
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Add A New Exercise:</h2>
-
-    <form action="/addExercise" method="POST">
-        <input type="text" placeholder="Exercise type" name="exerciseItem">
-        <input type="submit">
-    </form>
+    <div class="page-wrapper">
+        <h1>Workout Session: </h1>
+        <div class="container table">
+            <div>Exercise</div>
+            <div>Reps</div>
+            <div>Sets</div>
+            <div></div>
+            
+        </div>
     
-
+    
+        <div class="wrapper-exercises">
+        <% for(let i=0; i < items.length; i++) {%>
+            <div class="container item">
+                <div><%= items[i].exerciseType %></div>
+                <div><%= items[i].reps %></div>
+                <button class="subReps"><span>-</span></button>
+                <button class="addReps"><span>+</span></button>
+                <button class="addSets"><span>Add set</span></button>
+                <div><%= items[i].sets %></div>
+                <div class='fa fa-trash'></div>
+            </div>
+        <% } %>
+        </div>
+    
+        <h2>Add A New Exercise:</h2>
+    
+        <form action="/addNewExercise" method="POST">
+            <label for="exerciseType">Exercise:</label>
+            <input id="exerciseType" type="text" placeholder="Type the exercise" name="newExercise">
+            <label for="reps">Reps:</label>
+            <input id="reps" type="text" placeholder="Number of reps" name="repsAmount">
+            <input type="submit">
+        </form>    
+    </div>
+    
     <script src='js/main.js'></script>
 </body>
 </html>
